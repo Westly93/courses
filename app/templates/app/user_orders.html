@@ -1,0 +1,20 @@
+{% extends 'base.html' %}<!--block content -->
+{% block content %}
+<section class="grid grid-cols-3">
+  <div class="col-span-2">
+    {% if user_orders %} {% for order in user_orders %}
+    <div class="flex justify-between">
+      <p>{{ order.course.title }}</p>
+      <p>{{ order.course.price }}</p>
+    </div>
+    {% endfor %}
+    <hr />
+    <p>Total: {{total}}</p>
+    {% endif %}
+  </div>
+  <div class="mx-6">
+    <button class="bg-blue-700 py-2 px-4 rounded">Procced To checkout</button>
+  </div>
+</section>
+<!--Endblock content -->
+{% endblock content %}

@@ -1,0 +1,174 @@
+{% extends "base.html" %} {% load tailwind_filters %} {% block content %}
+<!--Tabs navigation-->
+
+<div class="mt-6 max-w-[1024px] mx-auto" x-data="{currentTab: 'Home'}">
+  <ul
+    class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
+    role="tablist"
+    data-te-nav-ref
+  >
+    <li role="presentation">
+      <a
+        href="#tabs-home"
+        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+        data-te-toggle="pill"
+        data-te-target="#tabs-home"
+        data-te-nav-active
+        role="tab"
+        aria-controls="tabs-home"
+        aria-selected="true"
+        @click="currentTab= $el.innerHTML"
+        >Home</a
+      >
+    </li>
+    <li role="presentation">
+      <a
+        href="#tabs-profile"
+        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+        data-te-toggle="pill"
+        data-te-target="#tabs-profile"
+        role="tab"
+        aria-controls="tabs-profile"
+        aria-selected="false"
+        @click="currentTab= $el.innerHTML"
+        >Profile</a
+      >
+    </li>
+    <li role="presentation">
+      <a
+        href="#tabs-settings"
+        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+        data-te-toggle="pill"
+        data-te-target="#tabs-settings"
+        data-te-nav-active
+        role="tab"
+        aria-controls="tabs-settings"
+        aria-selected="true"
+        @click="currentTab= $el.innerHTML"
+        >Settings</a
+      >
+    </li>
+  </ul>
+
+  <!--Tabs content-->
+  <div class="mb-6">
+    <div
+      x-show="currentTab=== 'Home'"
+      class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+      id="tabs-home"
+      role="tabpanel"
+      aria-labelledby="tabs-home-tab"
+      data-te-tab-active
+    >
+      <div class="shadow p-6">
+        <h3 class="text-xl uppercase font-semibold text-gray-500">
+          Enrolled Courses
+        </h3>
+      </div>
+    </div>
+    <div
+      x-show="currentTab === 'Profile'"
+      class="opacity-100 transition-opacity duration-150 ease-linear"
+      id="tabs-messages"
+      role="tabpanel"
+      aria-labelledby="tabs-messages-tab"
+    >
+      <div class="flex shadow p-6">
+        <div>
+          <img
+            class="rounded-full w-20 h-20"
+            src="{{ request.user.profile.thumbnail.url }}"
+          />
+          <div class="mt-[-0.8rem] ml-7">
+            <a class="text-teal-700" href="{% url 'accounts:profile-update' %}"
+              ><i class="fa-solid fa-pen-to-square"></i
+            ></a>
+          </div>
+        </div>
+        <div class="flex-1 ml-4">
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">First Name</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.first_name}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">Last Name</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.last_name}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">National Id</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.national_id}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">Gender</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.gender}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">Marital Status</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.marital_status}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">Address</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.address}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">City</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.city}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">State</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.nationality}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">Bio</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              {{ request.user.profile.bio}}
+            </p>
+          </div>
+          <div class="flex">
+            <p class="py-2 text-gray-500 w-2/5">Contacts</p>
+            <p class="py-2 text-gray-500 w-3/5">
+              <span id="contacts"
+                >{% include 'accounts/partials/contacts.html' %}</span
+              >
+            </p>
+          </div>
+          <div id="add-contact"></div>
+        </div>
+      </div>
+    </div>
+    <div
+      x-show="currentTab === 'Settings'"
+      class="opacity-100 transition-opacity duration-150 ease-linear"
+      id="tabs-settings"
+      role="tabpanel"
+      aria-labelledby="tabs-settings-tab"
+    >
+      <div class="shadow p-6">
+        <a href="{% url 'accounts:password_change' %}" class="text-teal-700"
+          >Change Password</a
+        >
+        <br />
+        <a href="{% url 'accounts:logout' %}" class="text-teal-700 py-3"
+          >Logout</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

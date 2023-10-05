@@ -1,0 +1,19 @@
+<div class="max-w-[1024px] mx-auto my-10">
+  <section class="">
+    <div class="col-span-2">
+      <h3 class="uppercase font-semibold mb-6">{{ course.title }}</h3>
+      <div>
+        <video class="w-full" autoplay controls>
+          <source src="{{ course.featured_video.url}}" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p class="mt-3">
+          Price: <span class="font-bold">{{ course.price }}</span> RTGS
+        </p>
+        <p class="font-semibold my-3">What You will Learn</p>
+        <p>{{ course.what_you_will_learn|safe }}</p>
+      </div>
+    </div>
+    </div>
+  </section>
+</div>
